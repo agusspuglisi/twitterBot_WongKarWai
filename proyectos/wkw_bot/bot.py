@@ -14,15 +14,11 @@ auth.set_access_token(keys.access_token, keys.access_token_secret)
 
 api = tweepy.API(auth)
 
-# Elijo una película con su respectivo url y nombre
-
-url, nombre_pelicula = seleccionar_url()
-
 imagenes_publicadas = []
 
 while True:
 
-    # Obtengo el HTML de la url
+    url, nombre_pelicula = seleccionar_url()
 
     pagina = requests.get(url)
     soup = BeautifulSoup(pagina.content, 'html.parser')
@@ -32,7 +28,7 @@ while True:
     if imagenes:
 
         # Twiteo la imagen
-        
+
         imagen_random = random.choice(imagenes)
         imagen_url = imagen_random['src']
         url_final = convertir_thumbnail(imagen_url)
@@ -41,9 +37,10 @@ while True:
             response = requests.get(url_final)
             if response.status_code == 200:
                 api.update_status_with_media(filename = None, file = response.content, status = nombre_pelicula)
+                print("Imagen publicada")
 
             imagenes_publicadas.append(url_final)
             if len(imagenes_publicadas) == len(imagenes):
                 imagenes_publicadas = []
 
-    time.sleep(600)
+    time.sleep(10000)

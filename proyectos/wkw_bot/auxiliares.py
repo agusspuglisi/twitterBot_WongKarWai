@@ -24,3 +24,4 @@ def seleccionar_url():
 
     random_url, random_peli = random.choice(list(dic_urls.items()))
     return random_url, random_peli
+
