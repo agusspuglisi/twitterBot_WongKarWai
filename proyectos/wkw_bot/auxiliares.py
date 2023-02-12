@@ -13,7 +13,6 @@ def seleccionar_url():
     dic_urls = {'https://film-grab.com/2014/10/20/chungking-express/' : 'Chungking Express (1994)', 
             'https://film-grab.com/2014/09/25/fallen-angels/' : 'Fallen Angels (1995)',
             'https://film-grab.com/2014/06/22/as-tears-go-by/' : 'As Tears Go By (1995)',
-            'https://film-grab.com/2014/04/30/the-grandmaster/' : 'The Grandmaster (2013)',
             'https://film-grab.com/2014/02/19/happy-together/' : 'Happy Together (1997)',
             'https://film-grab.com/2014/02/17/days-of-being-wild/' : 'Days of Being Wild (1990)',
             'https://film-grab.com/2014/02/21/my-blueberry-nights/' : 'My Blueberry Nights (2007)',
@@ -25,3 +24,16 @@ def seleccionar_url():
     random_url, random_peli = random.choice(list(dic_urls.items()))
     return random_url, random_peli
 
+
+def urls_repetidas():
+
+    urls = []
+
+    with open("urls_file.txt", "r") as file:
+
+        lines = file.readlines()
+        for line in lines:
+            line = line.strip()
+            urls.append(line)
+
+    return urls
